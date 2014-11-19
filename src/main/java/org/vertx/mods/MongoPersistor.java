@@ -341,7 +341,7 @@ public class MongoPersistor extends BusModBase implements Handler<Message<JsonOb
     JsonArray results = new JsonArray();
     while (cursor.hasNext() && count < max) {
       DBObject obj = cursor.next();
-      JsonObject m = new JsonObject(obj.toMap());
+      JsonObject m = MongoUtil.convertBsonToJson(obj);
       results.add(m);
       count++;
     }
